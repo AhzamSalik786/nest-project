@@ -1611,8 +1611,28 @@
         "signature": "9fa597167f1be9cc86b8e59e580c3587aabeb99dfd1bde9e3739b558630e3d5e",
         "affectsGlobalScope": false
       },
+      "../src/books/books.model.ts": {
+        "version": "700b42aa19bc6a637ece34afa99af7ed5ac194af9070fa37430c1b8f8b1b002a",
+        "signature": "8f7d71525758594eaba12f85134f02fbc5cb9ff84c903af4f74adcad56b41c07",
+        "affectsGlobalScope": false
+      },
+      "../src/books/books.service.ts": {
+        "version": "1a4a9f94796d113c7d6ec6ac04fa7eaf667db6aebbefb3bcaf2d6334cd4dc4da",
+        "signature": "09544b61870a2275d1447366ab528aaa4ddcb20f996283022fc767d944fda793",
+        "affectsGlobalScope": false
+      },
+      "../src/books/books.controller.ts": {
+        "version": "49bd544510eb581177654668779c5afdabf25313e99da58295a935a47fb2f619",
+        "signature": "814442fba61ed2940936ca93f9ef60d2d7ba88359a134faf7ae10b4df97a6734",
+        "affectsGlobalScope": false
+      },
+      "../src/books/books.module.ts": {
+        "version": "95b6ae4b3955fec07fd4a4d4806f70907588557aa4808f202bd181ecca022f55",
+        "signature": "827e8ecdc7854dc685d7ea2b7672a57d60e3b43f8437d9cab902a2c5a11b457c",
+        "affectsGlobalScope": false
+      },
       "../src/app.module.ts": {
-        "version": "56c33bd8231ea7f23795741d4fb82c71cbe0631844a1577af037aa1ea5d34f80",
+        "version": "27441b9b0a49173da71dbdc7fce0845e171ffc877febde30f65a0bfd21835c49",
         "signature": "9fc7f7b6ad854404973b8cba8e6d883f758237991968e9a3965d716d46f1da88",
         "affectsGlobalScope": false
       },
@@ -3556,12 +3576,33 @@
         "../node_modules/@nestjs/mongoose/index.d.ts",
         "../src/app.controller.ts",
         "../src/app.service.ts",
+        "../src/books/books.module.ts",
         "../src/gmail-user/gmail-user.module.ts",
         "../src/products/products.modules.ts",
         "../src/user/user.module.ts"
       ],
       "../src/app.service.ts": [
         "../node_modules/@nestjs/common/index.d.ts"
+      ],
+      "../src/books/books.controller.ts": [
+        "../node_modules/@nestjs/common/index.d.ts",
+        "../src/books/books.service.ts"
+      ],
+      "../src/books/books.model.ts": [
+        "../node_modules/mongoose/index.d.ts"
+      ],
+      "../src/books/books.module.ts": [
+        "../node_modules/@nestjs/common/index.d.ts",
+        "../node_modules/@nestjs/mongoose/index.d.ts",
+        "../src/books/books.controller.ts",
+        "../src/books/books.model.ts",
+        "../src/books/books.service.ts"
+      ],
+      "../src/books/books.service.ts": [
+        "../node_modules/@nestjs/common/index.d.ts",
+        "../node_modules/@nestjs/mongoose/index.d.ts",
+        "../node_modules/mongoose/index.d.ts",
+        "../src/books/books.model.ts"
       ],
       "../src/gmail-user/gmail-user.controller.ts": [
         "../node_modules/@nestjs/common/index.d.ts",
@@ -5059,6 +5100,16 @@
       "../src/app.controller.ts": [
         "../src/app.service.ts"
       ],
+      "../src/books/books.controller.ts": [
+        "../src/books/books.service.ts"
+      ],
+      "../src/books/books.model.ts": [
+        "../node_modules/mongoose/index.d.ts"
+      ],
+      "../src/books/books.service.ts": [
+        "../node_modules/mongoose/index.d.ts",
+        "../src/books/books.model.ts"
+      ],
       "../src/gmail-user/gmail-user.controller.ts": [
         "../src/gmail-user/gmail-user.service.ts"
       ],
@@ -5498,6 +5549,10 @@
       "../src/app.controller.ts",
       "../src/app.module.ts",
       "../src/app.service.ts",
+      "../src/books/books.controller.ts",
+      "../src/books/books.model.ts",
+      "../src/books/books.module.ts",
+      "../src/books/books.service.ts",
       "../src/gmail-user/gmail-user.controller.ts",
       "../src/gmail-user/gmail-user.model.ts",
       "../src/gmail-user/gmail-user.module.ts",

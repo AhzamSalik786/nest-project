@@ -2,24 +2,27 @@ import React from 'react';
 import { Link } from 'react-router-dom'
 import { Card } from 'react-bootstrap';
 import Rating from './Rating'
-const Product = ({ product }) => {
+const Book = ({ book }) => {
   return (
     <Card className='my-3 p-3 rounded'>
-      <Link to={`/product/${product._id}`}>
-        <Card.Img src={product.image} variant='top'/>
+      <Link to={`/books/${book.id}`}>
+        <Card.Img src={book.image} variant='top'/>
         </Link>
           <Card.Body>
-                 <Link to={`/product/${product._id}`}>
+                 <Link to={`/books/${book.id}`}>
                   <Card.Title as='div'>
-                      <strong><b>{product.name}</b></strong>
+                      <strong><b>{book.bookName}</b></strong>
+                    </Card.Title>
+                    <Card.Title as='div'>
+                      <strong><b>Writter: </b>{book.writter}</strong>
                     </Card.Title>
             </Link>
               <Card.Text as='div' >
                   <Rating
-                      value={product.rating}
-                      text={`${product.numReviews} reviews`} />
+                      value={book.rating}
+                      text={`${book.numReviews} reviews`} />
               </Card.Text>
-              <Card.Text as='h3'>${product.price}</Card.Text>
+              <Card.Text as='h3'>${book.price}</Card.Text>
 
           </Card.Body>
     
@@ -27,4 +30,4 @@ const Product = ({ product }) => {
   );
 };
 
-export default Product;
+export default Book;

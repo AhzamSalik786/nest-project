@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react'
 import { Link } from 'react-router-dom'
 import { useDispatch, useSelector } from 'react-redux'
-import { ListProductDetails } from '../actions/productActions'
+import { ListBookDetails } from '../actions/productActions'
 import {
   Row,
   Col,
@@ -16,14 +16,15 @@ import Rating from '../components/Rating'
 import Message from '../components/Message'
 import Loader from '../components/Loader'
 
-const ProductScreen = ({ history, match }) => {
+const BookScreen = ({ history, match }) => {
   const [qty, setQty] = useState(1)
   const dispatch = useDispatch()
 
-  const productDetails = useSelector((state) => state.productDetails)
-  const { loading, error, product } = productDetails
+  const bookDetails = useSelector((state) => state.bookDetails)
+  const { loading, error, book } = bookDetails
+  console.log("get data", book)
   useEffect(() => {
-    dispatch(ListProductDetails(match.params.id))
+    dispatch(ListBookDetails(match.params.id))
   }, [dispatch, match])
   const addToCardHandler = () => {
     history.push(`/cart/${match.params.id}?qty=${qty}`)
@@ -33,6 +34,7 @@ const ProductScreen = ({ history, match }) => {
 
   return (
     <>
+    <h1>Hello World</h1>
       <Link className='btn btn-light my-3' to='/'>
         Go Back
       </Link>
@@ -44,22 +46,22 @@ const ProductScreen = ({ history, match }) => {
         <Container>
           <Row>
             <Col md={5}>
-              <Image src={product.image} alt={product.name} fluid />
+              <Image src={book.image} alt={book.bookName} fluid />
             </Col>
             <Col md={3}>
               <ListGroup variant='flush'>
                 <ListGroup.Item>
-                  <h3>{product.name}</h3>
+                  <h3>{book.bookName}</h3>
                 </ListGroup.Item>
                 <ListGroup.Item>
                   <Rating
-                    value={product.rating}
-                    text={`${product.numReviews} reviews`}
+                    value={book.rating}
+                    text={`${book.numReviews} reviews`}
                   />
                 </ListGroup.Item>
-                <ListGroup.Item>Price: ${product.price}</ListGroup.Item>
+                <ListGroup.Item>Price: ${book.price}</ListGroup.Item>
                 <ListGroup.Item>
-                  Description: {product.description}
+                  Description: {book.description}
                 </ListGroup.Item>
               </ListGroup>
             </Col>
@@ -70,7 +72,7 @@ const ProductScreen = ({ history, match }) => {
                     <Row>
                       <Col>Price:</Col>
                       <Col>
-                        <strong>${product.price}</strong>
+                        <strong>${book.price}</strong>
                       </Col>
                     </Row>
                   </ListGroup.Item>
@@ -78,13 +80,13 @@ const ProductScreen = ({ history, match }) => {
                     <Row>
                       <Col>Status:</Col>
                       <Col>
-                        {product.countInStock === true
+                        {book.countInStock === true
                           ? 'In Stock'
                           : 'Out Of Stock'}
                       </Col>
                     </Row>
                   </ListGroup.Item>
-                  {product.countInStock > 0 && (
+                  {book.countInStock > 0 && (
                     <ListGroup.Item>
                       <Row>
                         <Col>qty</Col>
@@ -95,7 +97,7 @@ const ProductScreen = ({ history, match }) => {
                             value={qty}
                             onChange={(e) => setQty(e.target.value)}
                           >
-                            {[...Array(product.countInStock).keys()].map(
+                            {[...Array(book.countInStock).keys()].map(
                               (x) => (
                                 <option key={x + 1} value={x + 1}>
                                   {x + 1}
@@ -112,7 +114,7 @@ const ProductScreen = ({ history, match }) => {
                       onClick={addToCardHandler}
                       className='btn-block'
                       type='button'
-                      disabled={product.countInStock === false}
+                      disabled={book.countInStock === false}
                     >
                       Add To Card
                     </Button>
@@ -121,19 +123,19 @@ const ProductScreen = ({ history, match }) => {
               </Card>
             </Col>
           </Row>
-          <Row className='py-5'>
+          {/* <Row className='py-5'>
             <Col md={3}>
               <ListGroup variant='flush'>
                 <ListGroup.Item>
-                  <h3>{product.name}</h3>
+                  <h3>{book.bookName}</h3>
                 </ListGroup.Item>
               </ListGroup>
             </Col>
-          </Row>
+          </Row> */}
         </Container>
       )}
     </>
   )
 }
 
-export default ProductScreen
+export default BookScreen

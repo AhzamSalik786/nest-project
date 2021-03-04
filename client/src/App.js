@@ -26,11 +26,11 @@ const App = () => {
           <Route path='/orders/:id' component={OrderScreen} />
 
           <Route path='/shipping' component={ShippingScreen} />
-          <Route path='/product/:id' component={ProductScreen} />
           <Route path='/Cart/:id?' component={CartScreen} />
-        <Route path='/profile' component={ProfileScreen} />
-        <Route path='/' component={HomeScreen} exact /> */}
-          <Route path='/user/login' component={LoginScreen} exact />
+        <Route path='/profile' component={ProfileScreen} /> */}
+          <Route path='/books/:id' component={ProductScreen} />
+        <Route path='/' component={HomeScreen} exact />
+          <Route path='/user/login' component={LoginScreen}  />
           <Route path='/user/register' component={RegisterScreen} />
         </Container>
       </main>

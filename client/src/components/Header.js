@@ -20,6 +20,12 @@ const Header = () => {
           <LinkContainer to='/'>
             <Navbar.Brand>The Nest Js App</Navbar.Brand>
           </LinkContainer>
+
+          <LinkContainer to='/'>
+            <Navbar.Brand>
+The largest bookbank of new used and budget printed books in Pakistan!
+</Navbar.Brand>
+          </LinkContainer>
           <Navbar.Toggle aria-controls='basic-navbar-nav' />
           <Navbar.Collapse id='basic-navbar-nav'>
             <Nav className='ml-auto'>
