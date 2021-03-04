@@ -4,7 +4,7 @@ import { composeWithDevTools } from 'redux-devtools-extension'
 import {
   bookListReducer,
   bookDetailsReducer,
-} from './reducers/productReducers'
+} from './reducers/bookReducers'
 import { cartReducer } from './reducers/cartReducers'
 import {
   userLoginReducer,

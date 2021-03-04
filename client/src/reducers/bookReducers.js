@@ -11,7 +11,7 @@ import {
   BOOK_DETAILS_REQUEST,
   BOOK_DETAILS_SUCCESS,
   BOOK_DETAILS_FAIL,
-} from '../constants/productConstants';
+} from '../constants/bookConstants';
 
 export const bookListReducer = (state = { books: [] }, action) => {
   switch (action.type) {

@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react'
 import { Link } from 'react-router-dom'
 import { useDispatch, useSelector } from 'react-redux'
-import { ListBookDetails } from '../actions/productActions'
+import { ListBookDetails } from '../actions/bookActions'
 import {
   Row,
   Col,
