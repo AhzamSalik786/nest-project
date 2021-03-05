@@ -6,7 +6,7 @@ const Footer = () => {
             <Container>
                 <Row>
                     <Col className='text-center py-3'>
-                        Copyright &copy; The Nest Js app
+                        Copyright &copy; The Global Book
                     </Col>
                 </Row>
             </Container>

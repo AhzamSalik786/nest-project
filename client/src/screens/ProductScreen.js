@@ -31,10 +31,11 @@ const BookScreen = ({ history, match }) => {
   }
 
   // const product = products.find((p) => p._id === match.params.id);
+  console.log("book.countInStock",book.countInStock)
 
   return (
     <>
-    <h1>Hello World</h1>
+    <h1>Hello!</h1>
       <Link className='btn btn-light my-3' to='/'>
         Go Back
       </Link>
@@ -45,7 +46,7 @@ const BookScreen = ({ history, match }) => {
       ) : (
         <Container>
           <Row>
-            <Col md={5}>
+            <Col md={4}>
               <Image src={book.image} alt={book.bookName} fluid />
             </Col>
             <Col md={3}>
@@ -59,13 +60,13 @@ const BookScreen = ({ history, match }) => {
                     text={`${book.numReviews} reviews`}
                   />
                 </ListGroup.Item>
-                <ListGroup.Item>Price: ${book.price}</ListGroup.Item>
+                <ListGroup.Item>Price: ${book.price}/Per.Day</ListGroup.Item>
                 <ListGroup.Item>
                   Description: {book.description}
                 </ListGroup.Item>
               </ListGroup>
             </Col>
-            <Col md={3}>
+            <Col md={4}>
               <Card>
                 <ListGroup variant='flush'>
                   <ListGroup.Item>
@@ -80,16 +81,16 @@ const BookScreen = ({ history, match }) => {
                     <Row>
                       <Col>Status:</Col>
                       <Col>
-                        {book.countInStock === true
-                          ? 'In Stock'
-                          : 'Out Of Stock'}
+                        {!!book.countInStock
+                          ? 'Avalible'
+                          : 'Not Avaliable'}
                       </Col>
                     </Row>
                   </ListGroup.Item>
                   {book.countInStock > 0 && (
                     <ListGroup.Item>
                       <Row>
-                        <Col>qty</Col>
+                        <Col>Days:</Col>
                         <Col>
                           <Form.Control
                             as='select'
@@ -97,10 +98,10 @@ const BookScreen = ({ history, match }) => {
                             value={qty}
                             onChange={(e) => setQty(e.target.value)}
                           >
-                            {[...Array(book.countInStock).keys()].map(
+                            {[...Array(10 ).keys()].map(
                               (x) => (
                                 <option key={x + 1} value={x + 1}>
-                                  {x + 1}
+                                  {x + 1}  Day!
                                 </option>
                               )
                             )}
@@ -116,7 +117,8 @@ const BookScreen = ({ history, match }) => {
                       type='button'
                       disabled={book.countInStock === false}
                     >
-                      Add To Card
+                      Add To Borrowing Bag! <span> </span> <span> </span>
+                <i class="fas fa-suitcase-rolling">  </i>
                     </Button>
                   </ListGroup.Item>
                 </ListGroup>

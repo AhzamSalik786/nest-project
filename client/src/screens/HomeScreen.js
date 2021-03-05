@@ -1,19 +1,20 @@
-import React, { useEffect } from 'react';
-import { useDispatch, useSelector } from 'react-redux';
-import { Row, Col } from 'react-bootstrap';
-import Book from '../components/Book';
+import React, { useEffect } from 'react'
+import { useDispatch, useSelector } from 'react-redux'
+import { Row, Col } from 'react-bootstrap'
+import Book from '../components/Book'
 import Message from '../components/Message'
 import Loader from '../components/Loader'
-import { ListBooks } from '../actions/bookActions';
+import { ListBooks } from '../actions/bookActions'
 const HomeScreen = () => {
-  const dispatch = useDispatch();
+  const dispatch = useDispatch()
 
-  const bookList = useSelector((state) => state.bookList);
-  const { loading, error, books } = bookList;
+  const bookList = useSelector((state) => state.bookList)
+  const { loading, error, books } = bookList
+  console.log('bookList', bookList)
 
   useEffect(() => {
-    dispatch(ListBooks());
-  }, [dispatch]);
+    dispatch(ListBooks())
+  }, [dispatch])
 
   return (
     <>
@@ -21,7 +22,7 @@ const HomeScreen = () => {
       {loading ? (
         <Loader />
       ) : error ? (
-        <Message variant= 'danger'>{error}</Message>
+        <Message variant='danger'>{error}</Message>
       ) : (
         <Row>
           {books.map((book) => (
@@ -32,7 +33,7 @@ const HomeScreen = () => {
         </Row>
       )}
     </>
-  );
-};
+  )
+}
 
-export default HomeScreen;
+export default HomeScreen

@@ -18,22 +18,24 @@ const Header = () => {
       <Navbar bg='dark' variant='dark' expand='lg' collapseOnSelect>
         <Container>
           <LinkContainer to='/'>
-            <Navbar.Brand>The Nest Js App</Navbar.Brand>
+            <Navbar.Brand>The Global Book </Navbar.Brand>
           </LinkContainer>
 
           <LinkContainer to='/'>
             <Navbar.Brand>
-The largest bookbank of new used and budget printed books in Pakistan!
-</Navbar.Brand>
+              The largest bookbank of new used and budget printed books in
+              Pakistan!
+            </Navbar.Brand>
           </LinkContainer>
           <Navbar.Toggle aria-controls='basic-navbar-nav' />
           <Navbar.Collapse id='basic-navbar-nav'>
             <Nav className='ml-auto'>
-              {/* <LinkContainer to='/cart'>
+              <LinkContainer to='/cart'>
                 <Nav.Link>
-                  <i className='fas fa-shopping-cart'></i>Cart
+                  <i class='fas fa-suitcase-rolling'>Bag!</i>
+                  {/* <i className='fas fa-shopping-cart'></i>Cart */}
                 </Nav.Link>
-              </LinkContainer> */}
+              </LinkContainer>
               {userInfo ? (
                 <NavDropdown title={userInfo.name} id='username'>
                   <LinkContainer to='/profile'>
@@ -46,7 +48,7 @@ The largest bookbank of new used and budget printed books in Pakistan!
               ) : (
                 <LinkContainer to='/user/login'>
                   <Nav.Link>
-                    <i className='fas fa-user'></i>Sign In
+                    <i className='fas fa-user'>SignIn</i>
                   </Nav.Link>
                 </LinkContainer>
               )}

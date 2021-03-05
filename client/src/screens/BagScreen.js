@@ -7,7 +7,7 @@ import Message from '../components/Message'
 import { addToCart, removeFromCart } from '../actions/cartActions'
 // import { cartReducer } from '../reducers/cartReducers'
 
-const CartScreen = ({ match, location, history }) => {
+const BagScreen = ({ match, location, history }) => {
   const productId = match.params.id
 
   const qty = location.search ? Number(location.search.split('=')[1]) : 1
@@ -119,4 +119,4 @@ const CartScreen = ({ match, location, history }) => {
     </Row>
   )
 }
-export default CartScreen
+export default BagScreen

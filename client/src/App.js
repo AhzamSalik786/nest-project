@@ -5,7 +5,7 @@ import Header from './components/Header'
 import Footer from './components/Footer'
 import HomeScreen from './screens/HomeScreen'
 import ProductScreen from './screens/ProductScreen'
-import CartScreen from './screens/CartScreen'
+import BagScreen from './screens/BagScreen'
 import LoginScreen from './screens/LoginScreen'
 import RegisterScreen from './screens/RegisterScreen'
 import ProfileScreen from './screens/ProfileScreen'
@@ -26,7 +26,7 @@ const App = () => {
           <Route path='/orders/:id' component={OrderScreen} />
 
           <Route path='/shipping' component={ShippingScreen} />
-          <Route path='/Cart/:id?' component={CartScreen} />
+        <Route path='/Cart/:id?' component={BagScreen} />
         <Route path='/profile' component={ProfileScreen} /> */}
           <Route path='/books/:id' component={ProductScreen} />
         <Route path='/' component={HomeScreen} exact />
