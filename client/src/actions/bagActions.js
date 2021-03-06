@@ -10,33 +10,34 @@ import {
   BAG_SAVE_PAYMENT_METHOD,
 } from '../constants/bagConstant'
 
-export const addToCart = (id, qty) => async (dispatch, getState) => {
-  const { data } = await axios.get(`/api/products/${id}`)
+export const addToBag = (id, qty) => async (dispatch, getState) => {
+  const { data } = await axios.get(`http://localhost:5000/books/${id}`)
+  // http://localhost:5000/books/
 
   dispatch({
     type: BAG_ADD_ITEM,
     payload: {
-      product: data._id,
-      name: data.name,
+      book: data.id,
+      name: data.bookName,
       image: data.image,
       price: data.price,
       countInStock: data.countInStock,
       qty,
     },
   })
-  localStorage.setItem('cartItems', JSON.stringify(getState().cart.cartItems))
+  localStorage.setItem('bagItems', JSON.stringify(getState().bag.bagItems))
   // console.log(
   //   'bbbbbbbbb',
-  //   localStorage.setItem('cartItems', JSON.stringify(getState().cart.cartItems))
+  //   localStorage.setItem('bagItems', JSON.stringify(getState().bag.bagItems))
   // )
 }
 
-export const removeFromCart = (id) => (dispatch, getState) => {
+export const removeFromBag = (id) => (dispatch, getState) => {
   dispatch({
     type: BAG_REMOVE_ITEM,
     payload: id,
   })
-  localStorage.setItem('cartItems', JSON.stringify(getState().cart.cartItems))
+  localStorage.setItem('bagItems', JSON.stringify(getState().bag.bagItems))
 }
 
 export const saveShippingAddress = (data) => (dispatch) => {

@@ -4,26 +4,27 @@ import { Link } from 'react-router-dom'
 import { useDispatch, useSelector } from 'react-redux'
 import { Row, Col, ListGroup, Image, Form, Button, Card } from 'react-bootstrap'
 import Message from '../components/Message'
-import { addToCart, removeFromCart } from '../actions/cartActions'
+import { addToBag, removeFromBag } from '../actions/bagActions'
 // import { cartReducer } from '../reducers/cartReducers'
 
 const BagScreen = ({ match, location, history }) => {
-  const productId = match.params.id
+  const bagId = match.params.id
 
   const qty = location.search ? Number(location.search.split('=')[1]) : 1
   const dispatch = useDispatch()
 
-  const cart = useSelector((state) => state.cart)
-  const { cartItems } = cart
+  const bag = useSelector((state) => state.bag)
+  const { bagItems } = bag
+  console.log('bagItems', bagItems)
 
   useEffect(() => {
-    if (productId) {
-      dispatch(addToCart(productId, qty))
+    if (bagId) {
+      dispatch(addToBag(bagId, qty))
     }
-  }, [dispatch, productId, qty])
+  }, [dispatch, bagId, qty])
 
-  const removeFromCartHandler = (id) => {
-    dispatch(removeFromCart(id))
+  const removeFromBagHandler = (id) => {
+    dispatch(removeFromBag(id))
   }
 
   const checkoutHandler = () => {
@@ -35,16 +36,16 @@ const BagScreen = ({ match, location, history }) => {
   return (
     <Row>
       <Col md={8}>
-        <h1>Shopping Cart</h1>
-        {cartItems.length === 0 ? (
+        <h1>Borrow Bag!</h1>
+        {bagItems.length === 0 ? (
           <Message>
-            Your Card Is Empty
+            <i class='fas fa-sad-tear'></i> Your Bag Is Empty{' '}
             <Link to='/'>Go Back</Link>
           </Message>
         ) : (
           <ListGroup variant='flush'>
-            {cartItems.map((item) => (
-              <ListGroup.Item key={item.product}>
+            {bagItems.map((item) => (
+              <ListGroup.Item key={item.book}>
                 <Row>
                   <Col md={2}>
                     <Image
@@ -55,22 +56,20 @@ const BagScreen = ({ match, location, history }) => {
                     />
                   </Col>
                   <Col md={3}>
-                    <Link to={`/product/${item.product}`}>{item.name}</Link>
+                    <Link to={`/books/${item.book}`}>{item.name}</Link>
                   </Col>
-                  <Col md={2}>${item.price}</Col>
-                  <Col md={2}>
+                  <Col md={2}>${item.price} / Per.Day!</Col>
+                  <Col md={3}>
                     <Form.Control
                       as='select'
                       value={item.qty}
                       onChange={(e) =>
-                        dispatch(
-                          addToCart(item.product, Number(e.target.value))
-                        )
+                        dispatch(addToBag(item.book, Number(e.target.value)))
                       }
                     >
-                      {[...Array(item.countInStock).keys()].map((x) => (
+                      {[...Array(10).keys()].map((x) => (
                         <option key={x + 1} value={x + 1}>
-                          {x + 1}
+                          {x + 1} Day!
                         </option>
                       ))}
                     </Form.Control>
@@ -79,7 +78,7 @@ const BagScreen = ({ match, location, history }) => {
                     <Button
                       type='button'
                       variant='light'
-                      onClick={() => removeFromCartHandler(item.product)}
+                      onClick={() => removeFromBagHandler(item.book)}
                     >
                       <i className='fas fa-trash'></i>
                     </Button>
@@ -96,10 +95,12 @@ const BagScreen = ({ match, location, history }) => {
             <ListGroup.Item>
               <h2>
                 Subtotal:
-                {cartItems.reduce((acc, item) => acc + item.qty, 0)} items
+                {/* {bagItems.reduce((acc, item) => acc + item.qty, 0
+               )} books */}
+                {bagItems.length} Books
               </h2>
               $
-              {cartItems
+              {bagItems
                 .reduce((acc, item) => acc + item.qty * item.price, 0)
                 .toFixed(2)}
             </ListGroup.Item>
@@ -107,7 +108,7 @@ const BagScreen = ({ match, location, history }) => {
               <Button
                 type='button'
                 className='btn-block'
-                disabled={cartItems.length === 0}
+                disabled={bagItems.length === 0}
                 onClick={checkoutHandler}
               >
                 Proceed To Checkout

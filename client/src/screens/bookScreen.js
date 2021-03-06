@@ -27,7 +27,7 @@ const BookScreen = ({ history, match }) => {
     dispatch(ListBookDetails(match.params.id))
   }, [dispatch, match])
   const addToCardHandler = () => {
-    history.push(`/cart/${match.params.id}?qty=${qty}`)
+    history.push(`/Bag/${match.params.id}?qty=${qty}`)
   }
 
   // const product = products.find((p) => p._id === match.params.id);
@@ -68,12 +68,34 @@ const BookScreen = ({ history, match }) => {
             </Col>
             <Col md={4}>
               <Card>
+              {book.countInStock > 0 && (
+                    <ListGroup.Item>
+                      <Row>
+                        <Col>Days:</Col>
+                        <Col>
+                          <Form.Control
+                            as='select'
+                            // placeholder="name"
+                            value={qty}
+                            onChange={(e) => setQty(e.target.value)}
+                          >
+                            
+                            {[...Array(10).keys()].map((x) => (
+                                <option key={x + 1} value={x + 1}>
+                                  {x + 1}  Day!
+                                </option>
+                              ))}
+                          </Form.Control>
+                        </Col>
+                      </Row>
+                    </ListGroup.Item>
+                  )}
                 <ListGroup variant='flush'>
                   <ListGroup.Item>
                     <Row>
                       <Col>Price:</Col>
                       <Col>
-                        <strong>${book.price}</strong>
+                        <strong>${book.price * qty}/For {qty} Day!</strong>
                       </Col>
                     </Row>
                   </ListGroup.Item>
@@ -87,29 +109,7 @@ const BookScreen = ({ history, match }) => {
                       </Col>
                     </Row>
                   </ListGroup.Item>
-                  {book.countInStock > 0 && (
-                    <ListGroup.Item>
-                      <Row>
-                        <Col>Days:</Col>
-                        <Col>
-                          <Form.Control
-                            as='select'
-                            // placeholder="name"
-                            value={qty}
-                            onChange={(e) => setQty(e.target.value)}
-                          >
-                            {[...Array(10 ).keys()].map(
-                              (x) => (
-                                <option key={x + 1} value={x + 1}>
-                                  {x + 1}  Day!
-                                </option>
-                              )
-                            )}
-                          </Form.Control>
-                        </Col>
-                      </Row>
-                    </ListGroup.Item>
-                  )}
+                  
                   <ListGroup.Item>
                     <Button
                       onClick={addToCardHandler}

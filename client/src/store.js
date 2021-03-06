@@ -5,7 +5,7 @@ import {
   bookListReducer,
   bookDetailsReducer,
 } from './reducers/bookReducers'
-import { cartReducer } from './reducers/bagReducers'
+import { bagReducer } from './reducers/bagReducers'
 import {
   userLoginReducer,
   gmailUserLoginReducer,
@@ -22,7 +22,7 @@ import {
 const reducer = combineReducers({
   bookList: bookListReducer,
   bookDetails: bookDetailsReducer,
-  cart: cartReducer,
+  bag: bagReducer,
   userLogin: userLoginReducer,
   gmailUserLogin : gmailUserLoginReducer,
   userRegister: userRegisterReducer,
@@ -33,8 +33,8 @@ const reducer = combineReducers({
   orderPay: orderPayReducer,
 })
 
-const cartItemFromStorage = localStorage.getItem('cartItems')
-  ? JSON.parse(localStorage.getItem('cartItems'))
+const bagItemFromStorage = localStorage.getItem('bagItems')
+  ? JSON.parse(localStorage.getItem('bagItems'))
   : []
 
 const userIndoFromStorage = localStorage.getItem('userInfo')
@@ -46,8 +46,8 @@ const shippingAddressFromStorage = localStorage.getItem('shippingAddress')
   : {}
 
 const initialState = {
-  cart: {
-    cartItems: cartItemFromStorage,
+  bag: {
+    bagItems: bagItemFromStorage,
     shippingAddress: shippingAddressFromStorage,
   },
   userLogin: { userInfo: userIndoFromStorage },

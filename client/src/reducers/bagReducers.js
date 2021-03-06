@@ -9,26 +9,27 @@ import {
   BAG_SAVE_PAYMENT_METHOD,
 } from '../constants/bagConstant'
 
-export const cartReducer = (
-  state = { cartItems: [], shippingAddress: {} },
+export const bagReducer = (
+  state = { bagItems: [], shippingAddress: {} },
   action
 ) => {
+  // console.log("bagItem", bagItems)
   switch (action.type) {
     case BAG_ADD_ITEM:
       const item = action.payload
-      const existItem = state.cartItems.find((x) => x.product === item.product)
+      const existItem = state.bagItems.find((x) => x.book === item.book)
 
       if (existItem) {
         return {
           ...state,
-          cartItems: state.cartItems.map((x) =>
-            x.product === existItem.product ? item : x
+          bagItems: state.bagItems.map((x) =>
+            x.book === existItem.book ? item : x
           ),
         }
       } else {
         return {
           ...state,
-          cartItems: [...state.cartItems, item],
+          bagItems: [...state.bagItems, item],
         }
       }
     case BAG_REMOVE_ITEM:
@@ -36,7 +37,7 @@ export const cartReducer = (
 
       return {
         ...state,
-        cartItems: state.cartItems.filter((x) => x.product !== action.payload),
+        bagItems: state.bagItems.filter((x) => x.book !== action.payload),
       }
     // console.log('da', action.payload)
 
