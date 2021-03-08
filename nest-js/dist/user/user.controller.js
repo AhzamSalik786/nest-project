@@ -27,6 +27,7 @@ let UserController = class UserController {
         const generatedId = await this.userService.matchUser(userEmail, userpassword);
         return {
             user: 'user is valid ',
+            userData: generatedId,
         };
     }
 };

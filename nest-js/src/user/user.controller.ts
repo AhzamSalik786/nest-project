@@ -48,6 +48,12 @@ export class UserController {
     );
     return {
       user: 'user is valid ',
+      userData:  generatedId,
+      // _id: user._id,
+      // name: user.name,
+      // email: user.email,
+      // isAdmin: user.isAdmin,
+      // token: generateToken(user._id),
       // token: userEmail.token
     };
   }

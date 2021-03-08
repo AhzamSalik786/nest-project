@@ -7,5 +7,11 @@ export declare class UserController {
     }>;
     checkUser(userEmail: string, userpassword: string): Promise<{
         user: string;
+        userData: {
+            _id: any;
+            name: string;
+            email: string;
+            token: any;
+        };
     }>;
 }

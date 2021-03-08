@@ -18,6 +18,7 @@ import {
   orderDetailsReducer,
   orderPayReducer,
 } from './reducers/orderReducers'
+// console.log( userLogin)
 
 const reducer = combineReducers({
   bookList: bookListReducer,
@@ -37,10 +38,12 @@ const bagItemFromStorage = localStorage.getItem('bagItems')
   ? JSON.parse(localStorage.getItem('bagItems'))
   : []
 
-const userIndoFromStorage = localStorage.getItem('userInfo')
+const userInfoFromStorage = localStorage.getItem('userInfo')
   ? JSON.parse(localStorage.getItem('userInfo'))
   : null
-
+  const userInfoFromGmailStorage = localStorage.getItem('userInfoGmail')
+  ? JSON.parse(localStorage.getItem('userInfoGmail'))
+  : null
 const shippingAddressFromStorage = localStorage.getItem('shippingAddress')
   ? JSON.parse(localStorage.getItem('shippingAddress'))
   : {}
@@ -50,9 +53,11 @@ const initialState = {
     bagItems: bagItemFromStorage,
     shippingAddress: shippingAddressFromStorage,
   },
-  userLogin: { userInfo: userIndoFromStorage },
+  userLogin: { userInfo: userInfoFromStorage,
+               userInfoGmail : userInfoFromGmailStorage
+   },
+  
 }
-
 const middleware = [thunk]
 
 const store = createStore(

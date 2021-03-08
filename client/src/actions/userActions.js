@@ -42,7 +42,7 @@ export const loginWithGmail = (gmail) => async (dispatch) => {
       payload: data,
     })
 
-    localStorage.setItem('userInfo', JSON.stringify(data))
+    localStorage.setItem('userInfoGmail', JSON.stringify(data))
   } catch (error) {
     dispatch({
       type: USER_LOGINWITHGMAIL_FAIL,
@@ -114,6 +114,7 @@ export const register = (name, email, password) => async (dispatch) => {
       { name, email, password },
       config
     )
+    console.log("userInfo000000000000000000" , data)
 
     dispatch({
       type: USER_REGISTER_SUCCESS,
@@ -124,7 +125,7 @@ export const register = (name, email, password) => async (dispatch) => {
       type: USER_LOGIN_SUCCESS,
       payload: data,
     })
-
+    
     localStorage.setItem('userInfo', JSON.stringify(data))
   } catch (error) {
     dispatch({
