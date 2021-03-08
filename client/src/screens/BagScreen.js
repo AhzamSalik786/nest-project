@@ -28,7 +28,9 @@ const BagScreen = ({ match, location, history }) => {
   }
 
   const checkoutHandler = () => {
-    history.push('/login?redirect=shipping')
+    history.push('/user/login?redirect=shipping')
+    // history.push('/shipping')
+
   }
 
   // console.log(qty)
@@ -39,7 +41,7 @@ const BagScreen = ({ match, location, history }) => {
         <h1>Borrow Bag!</h1>
         {bagItems.length === 0 ? (
           <Message>
-            <i class='fas fa-sad-tear'></i> Your Bag Is Empty{' '}
+            <i className='fas fa-sad-tear'></i> Your Bag Is Empty{' '}
             <Link to='/'>Go Back</Link>
           </Message>
         ) : (

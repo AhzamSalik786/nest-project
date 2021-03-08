@@ -60,6 +60,10 @@ const BookScreen = ({ history, match }) => {
                     text={`${book.numReviews} reviews`}
                   />
                 </ListGroup.Item>
+                <ListGroup.Item>Writter: {book.writter}</ListGroup.Item>
+
+                <ListGroup.Item>Page: {book.pages} Pages</ListGroup.Item>
+
                 <ListGroup.Item>Price: ${book.price}/Per.Day</ListGroup.Item>
                 <ListGroup.Item>
                   Description: {book.description}
@@ -118,7 +122,7 @@ const BookScreen = ({ history, match }) => {
                       disabled={book.countInStock === false}
                     >
                       Add To Borrowing Bag! <span> </span> <span> </span>
-                <i class="fas fa-suitcase-rolling">  </i>
+                <i className="fas fa-suitcase-rolling">  </i>
                     </Button>
                   </ListGroup.Item>
                 </ListGroup>

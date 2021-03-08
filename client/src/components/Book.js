@@ -23,7 +23,7 @@ const Book = ({ book }) => {
           </Card.Title>
         </Link>
         
-        <Card.Text as='div' class ="font-weight-bolder"><strong><b>${book.price}/</b></strong> Per.Day</Card.Text>
+        <Card.Text as='div' className ="font-weight-bolder"><strong><b>${book.price}/</b></strong> Per.Day</Card.Text>
         <Card.Text as='div'>
           <Rating value={book.rating} text={`${book.numReviews} reviews`} />
         </Card.Text>

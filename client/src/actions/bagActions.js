@@ -11,6 +11,7 @@ import {
 } from '../constants/bagConstant'
 
 export const addToBag = (id, qty) => async (dispatch, getState) => {
+  console.log("addTo", id, qty )
   const { data } = await axios.get(`http://localhost:5000/books/${id}`)
   // http://localhost:5000/books/
 
@@ -46,6 +47,7 @@ export const saveShippingAddress = (data) => (dispatch) => {
     payload: data,
   })
   localStorage.setItem('shippingAddress', JSON.stringify(data))
+  console.log("address" , data)
 }
 
 export const savePaymentMethod = (data) => (dispatch) => {
