@@ -6,11 +6,13 @@ import Message from '../components/Message'
 import CheckoutSteps from '../components/CheckoutSteps'
 import { createOrder } from '../actions/orderActions'
 import MapScreen from '../components/MapScreen'
+// import abc from '../../public/images'
 const PlaceOrderScreen = ({ history, props }) => {
   console.log('his', props, history)
   const dispatch = useDispatch()
   const bag = useSelector((state) => state.bag)
   console.log('bag', bag)
+  // console.log("img", `/client/public/${bag.bagItem.images.item.image}`)
 
   //CAlculate prices
 
@@ -71,13 +73,10 @@ const PlaceOrderScreen = ({ history, props }) => {
             <Col md={8}>
             </Col>
           </Row> */}
-{/* <ListGroup>
+          {/* <ListGroup>
   <MapScreen/>
 </ListGroup> */}
           <ListGroup variant='flush'>
-           
-            
-            
             <ListGroup.Item>
               <h2>Shipping</h2>
               <p>
@@ -87,15 +86,15 @@ const PlaceOrderScreen = ({ history, props }) => {
                   : bag.shippingLocation.latitude}
                 ,{' '}
                 {bag.shippingAddress.city
-                  ? bag.shippingAddress.address
+                  ? bag.shippingAddress.city
                   : bag.shippingLocation.longitude}
                 {bag.shippingAddress.postalCode
-                  ? bag.shippingAddress.address
+                  ? bag.shippingAddress.postalCode
                   : ''}{' '}
-                {bag.shippingAddress.country ? bag.shippingAddress.address : ''}
+                {bag.shippingAddress.country ? bag.shippingAddress.country : ''}
               </p>
             </ListGroup.Item>
-            
+
             <ListGroup.Item>
               <h2>Payment Method</h2>
               <strong> Method:</strong>
@@ -107,16 +106,16 @@ const PlaceOrderScreen = ({ history, props }) => {
                 <Message> Your bag is empty</Message>
               ) : (
                 <ListGroup variarnt='flush'>
-                  
                   {bag.bagItems.map((item, index) => (
-                    // console.log("img", /client/public/${item.image})
+
                     // client\public\images\albasit.jpg
                     <ListGroup.Item key={index}>
                       <Row>
                         <Col md={12}>
-                          
+                          {/* F:\project\nestjs\nestjs-intro\client\public\images\albasit.jpg */}
                           <Image
-                            src={`\client\public${item.image}`}
+                            // src={`../../public${item.image}`}
+                            src={`${item.image}`}
                             // client\public\images\albasit.jpg
                             alt={item.name}
                             fluid
@@ -124,12 +123,11 @@ const PlaceOrderScreen = ({ history, props }) => {
                           />
                         </Col>
                         <Col md={5}>
-                          <Link to={`/books/${item.book}`}>
-                            {item.name}
-                          </Link>
+                          <Link to={`/books/${item.book}`}>{item.name}</Link>
                         </Col>
                         <Col md={4}>
-                          {item.qty}Day x ${item.price} = ${item.qty * item.price}
+                          {item.qty}Day x ${item.price} = $
+                          {item.qty * item.price}
                         </Col>
                       </Row>
                     </ListGroup.Item>
