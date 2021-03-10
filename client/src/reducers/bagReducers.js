@@ -7,6 +7,7 @@ import {
   BAG_REMOVE_ITEM,
   BAG_SAVE_SHIPPING_ADDRESS,
   BAG_SAVE_PAYMENT_METHOD,
+  BAG_SAVE_SHIPPING_LOCATION,
 } from '../constants/bagConstant'
 
 export const bagReducer = (
@@ -45,6 +46,11 @@ export const bagReducer = (
       return {
         ...state,
         shippingAddress: action.payload,
+      }
+    case BAG_SAVE_SHIPPING_LOCATION:
+      return {
+        ...state,
+        shippingLocation: action.payload,
       }
 
     case BAG_SAVE_PAYMENT_METHOD:

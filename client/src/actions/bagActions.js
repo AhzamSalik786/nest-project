@@ -7,6 +7,7 @@ import {
   BAG_ADD_ITEM,
   BAG_REMOVE_ITEM,
   BAG_SAVE_SHIPPING_ADDRESS,
+  BAG_SAVE_SHIPPING_LOCATION,
   BAG_SAVE_PAYMENT_METHOD,
 } from '../constants/bagConstant'
 
@@ -48,6 +49,14 @@ export const saveShippingAddress = (data) => (dispatch) => {
   })
   localStorage.setItem('shippingAddress', JSON.stringify(data))
   console.log("address" , data)
+}
+export const saveShippingLocation = (data) => (dispatch) => {
+  dispatch({
+    type: BAG_SAVE_SHIPPING_LOCATION,
+    payload: data,
+  })
+  localStorage.setItem('shippingLocation', JSON.stringify(data))
+  console.log("Location" , data)
 }
 
 export const savePaymentMethod = (data) => (dispatch) => {

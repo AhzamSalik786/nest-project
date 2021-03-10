@@ -34,7 +34,7 @@ const Header = () => {
             <Nav className='ml-auto'>
               <LinkContainer to='/bag'>
                 <Nav.Link>
-                  <i className='fas fa-suitcase-rolling'>Bag!</i>
+                  <i className='fas fa-suitcase-rolling fa-lg'>Bag!</i>
                   {/* <i className='fas fa-shopping-cart'></i>Cart */}
                 </Nav.Link>
               </LinkContainer>
@@ -50,7 +50,7 @@ const Header = () => {
               ) : (
                 <LinkContainer to='/user/login'>
                   <Nav.Link>
-                    <i className='fas fa-user'>SignIn</i>
+                    <i className='fas fa-user fa-lg'>SignIn</i>
                   </Nav.Link>
                 </LinkContainer>
               )}

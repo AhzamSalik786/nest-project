@@ -5,28 +5,29 @@ import { useDispatch, useSelector } from 'react-redux'
 import Message from '../components/Message'
 import CheckoutSteps from '../components/CheckoutSteps'
 import { createOrder } from '../actions/orderActions'
-
+import MapScreen from '../components/MapScreen'
 const PlaceOrderScreen = ({ history, props }) => {
   console.log('his', props, history)
   const dispatch = useDispatch()
-  const cart = useSelector((state) => state.cart)
+  const bag = useSelector((state) => state.bag)
+  console.log('bag', bag)
 
   //CAlculate prices
 
   const addDecimals = (num) => {
     return (Math.round(num * 100) / 100).toFixed(2)
   }
-  cart.itemsPrice = addDecimals(
-    cart.cartItems.reduce((acc, item) => acc + item.price * item.qty, 0)
+  bag.itemsPrice = addDecimals(
+    bag.bagItems.reduce((acc, item) => acc + item.price * item.qty, 0)
   )
 
-  cart.shippingPrice = addDecimals(cart.itemsPrice > 100 ? 0 : 100)
-  cart.taxPrice = addDecimals(Number((0.15 * cart.itemsPrice).toFixed(2)))
+  bag.shippingPrice = addDecimals(bag.itemsPrice > 30 ? 0 : 30)
+  bag.taxPrice = addDecimals(Number((0.05 * bag.itemsPrice).toFixed(2)))
 
-  cart.totalPrice = (
-    Number(cart.itemsPrice) +
-    Number(cart.shippingPrice) +
-    Number(cart.taxPrice)
+  bag.totalPrice = (
+    Number(bag.itemsPrice) +
+    Number(bag.shippingPrice) +
+    Number(bag.taxPrice)
   ).toFixed(2)
   // console.log('state', state)
 
@@ -46,61 +47,89 @@ const PlaceOrderScreen = ({ history, props }) => {
     console.log('placeHolder Index')
     dispatch(
       createOrder({
-        orderItems: cart.cartItems,
-        shippingAddress: cart.shippingAddress,
-        paymentMethod: cart.paymentMethod,
-        itemsPrice: cart.itemsPrice,
-        shippingPrice: cart.shippingPrice,
-        taxPrice: cart.taxPrice,
-        totalPrice: cart.totalPrice,
+        orderItems: bag.bagItems,
+        shippingAddress: bag.shippingAddress,
+        shippingLocaion: bag.shippingLocaion,
+        paymentMethod: bag.paymentMethod,
+        itemsPrice: bag.itemsPrice,
+        shippingPrice: bag.shippingPrice,
+        taxPrice: bag.taxPrice,
+        totalPrice: bag.totalPrice,
       })
     )
   }
+
   return (
     <>
       <CheckoutSteps step1 step2 step3 step4 />
       <Row>
-        <Col md={8}>
+        <Col md={3}>
+          <MapScreen />
+        </Col>
+        <Col md={6}>
+          {/* <Row>
+            <Col md={8}>
+            </Col>
+          </Row> */}
+{/* <ListGroup>
+  <MapScreen/>
+</ListGroup> */}
           <ListGroup variant='flush'>
+           
+            
+            
             <ListGroup.Item>
               <h2>Shipping</h2>
               <p>
                 <strong>Address:</strong>
-                {cart.shippingAddress.address}, {cart.shippingAddress.city}{' '}
-                {cart.shippingAddress.postalCode},{' '}
-                {cart.shippingAddress.country}
+                {bag.shippingAddress.address
+                  ? bag.shippingAddress.address
+                  : bag.shippingLocation.latitude}
+                ,{' '}
+                {bag.shippingAddress.city
+                  ? bag.shippingAddress.address
+                  : bag.shippingLocation.longitude}
+                {bag.shippingAddress.postalCode
+                  ? bag.shippingAddress.address
+                  : ''}{' '}
+                {bag.shippingAddress.country ? bag.shippingAddress.address : ''}
               </p>
             </ListGroup.Item>
-
+            
             <ListGroup.Item>
               <h2>Payment Method</h2>
               <strong> Method:</strong>
-              {cart.paymentMethod}
+              {bag.paymentMethod}
             </ListGroup.Item>
             <ListGroup.Item>
-              <h2>Order Items</h2>
-              {cart.cartItems.length === 0 ? (
-                <Message> Your cart is empty</Message>
+              <h2>Borrowed Books</h2>
+              {bag.bagItems.length === 0 ? (
+                <Message> Your bag is empty</Message>
               ) : (
                 <ListGroup variarnt='flush'>
-                  {cart.cartItems.map((item, index) => (
+                  
+                  {bag.bagItems.map((item, index) => (
+                    // console.log("img", /client/public/${item.image})
+                    // client\public\images\albasit.jpg
                     <ListGroup.Item key={index}>
                       <Row>
-                        <Col md={1}>
+                        <Col md={12}>
+                          
                           <Image
-                            src={item.image}
+                            src={`\client\public${item.image}`}
+                            // client\public\images\albasit.jpg
                             alt={item.name}
                             fluid
                             rounded
                           />
                         </Col>
-                        <Col>
-                          <Link to={`/product/${item.product}`}>
+                        <Col md={5}>
+                          <Link to={`/books/${item.book}`}>
                             {item.name}
                           </Link>
                         </Col>
                         <Col md={4}>
-                          {item.qty} x ${item.price} = ${item.qty * item.price}
+                          {item.qty}Day x ${item.price} = ${item.qty * item.price}
                         </Col>
                       </Row>
                     </ListGroup.Item>
@@ -110,7 +139,7 @@ const PlaceOrderScreen = ({ history, props }) => {
             </ListGroup.Item>
           </ListGroup>
         </Col>
-        <Col md={4}>
+        <Col md={3}>
           <Card>
             <ListGroup variant='flush'>
               <ListGroup.Item>
@@ -118,26 +147,26 @@ const PlaceOrderScreen = ({ history, props }) => {
               </ListGroup.Item>
               <ListGroup.Item>
                 <Row>
-                  <Col>Items</Col>
-                  <Col>${cart.itemsPrice}</Col>
+                  <Col>Book Price</Col>
+                  <Col>${bag.itemsPrice}</Col>
                 </Row>
               </ListGroup.Item>
               <ListGroup.Item>
                 <Row>
                   <Col>Shippings</Col>
-                  <Col>${cart.shippingPrice}</Col>
+                  <Col>${bag.shippingPrice}</Col>
                 </Row>
               </ListGroup.Item>
               <ListGroup.Item>
                 <Row>
                   <Col>Tax</Col>
-                  <Col>${cart.taxPrice}</Col>
+                  <Col>${bag.taxPrice}</Col>
                 </Row>
               </ListGroup.Item>
               <ListGroup.Item>
                 <Row>
                   <Col>Total</Col>
-                  <Col>${cart.totalPrice}</Col>
+                  <Col>${bag.totalPrice}</Col>
                 </Row>
               </ListGroup.Item>
 
@@ -148,7 +177,7 @@ const PlaceOrderScreen = ({ history, props }) => {
                 <Button
                   type='button'
                   className='btn-block'
-                  disabled={cart.cartItems === 0}
+                  disabled={bag.bagItems === 0}
                   onClick={PlaceOrderHandler}
                 >
                   Place Order

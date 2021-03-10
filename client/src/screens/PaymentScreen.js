@@ -6,16 +6,19 @@ import CheckoutSteps from '../components/CheckoutSteps'
 import { savePaymentMethod } from '../actions/bagActions'
 
 const PaymentScreen = ({ history }) => {
-  const cart = useSelector((state) => state.cart)
-  const { shippingAddress } = cart
+  const bag = useSelector((state) => state.bag)
+  const { shippingAddress } = bag
+  const { shippingLocation} = bag
 
-  if (!shippingAddress) {
-    history.push('/shipping')
+  if (!shippingAddress || !shippingLocation ) {
+    history.push('/user/shipping')
   }
 
   const [paymentMethod, setPaymentMethod] = useState(
+    'strip',
     'PayPal',
-    'Cash On Delivery'
+    'Cash On Delivery',
+    
   )
 
   const dispatch = useDispatch()
@@ -23,7 +26,7 @@ const PaymentScreen = ({ history }) => {
     // console.log('submit')
     e.preventDefault()
     dispatch(savePaymentMethod(paymentMethod))
-    history.push('/placeorder')
+    history.push('/user/placeorder')
   }
 
   return (
@@ -35,7 +38,16 @@ const PaymentScreen = ({ history }) => {
           <Form.Label as='legend'>Select Method</Form.Label>
 
           <Col>
-            <Form.Check
+          <Form.Check
+              type='radio'
+              label='Strip'
+              id='Strip'
+              name='paymentMethod'
+              value='Strip'
+              checked
+              onChange={(e) => setPaymentMethod(e.target.value)}
+            ></Form.Check>
+            {/* <Form.Check
               type='radio'
               label='PayPal or Credit Card'
               id='PayPal'
@@ -43,7 +55,7 @@ const PaymentScreen = ({ history }) => {
               value='PayPal'
               checked
               onChange={(e) => setPaymentMethod(e.target.value)}
-            ></Form.Check>
+            ></Form.Check> */}
             {/* <Form.Check
               type='radio'
               label='Stripe'
@@ -64,7 +76,7 @@ const PaymentScreen = ({ history }) => {
           </Col>
         </Form.Group>
         <Button type='submit' variant='primary'>
-          Continue
+          Continue...
         </Button>
       </Form>
     </FormContainer>

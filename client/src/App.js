@@ -21,11 +21,14 @@ const App = () => {
 
       <main className='py-3'>
         <Container>
-          {/* <Route path='/payment' component={PaymentScreen} />
-          <Route path='/placeorder' component={PlaceOrderScreen} />
+          {/* <Route path='/payment' component={PaymentScreen} /> */}
+          {/*
           <Route path='/orders/:id' component={OrderScreen} />
-
-        <Route path='/profile' component={ProfileScreen} /> */}
+          
+          <Route path='/profile' component={ProfileScreen} /> 
+        */}
+        <Route path='/user/placeorder' component={PlaceOrderScreen} />
+        <Route path='/user/payment' component={PaymentScreen} />
           <Route path='/books/:id' component={ProductScreen} />
         <Route path='/user/shipping' component={ShippingScreen} />
         <Route path='/Bag/:id?' component={BagScreen} />

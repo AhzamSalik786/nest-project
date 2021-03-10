@@ -47,11 +47,16 @@ const userInfoFromStorage = localStorage.getItem('userInfo')
 const shippingAddressFromStorage = localStorage.getItem('shippingAddress')
   ? JSON.parse(localStorage.getItem('shippingAddress'))
   : {}
-
+  const shippingLocationFromStorage = localStorage.getItem('shippingLocation')
+  ? JSON.parse(localStorage.getItem('shippingLocation'))
+  : {}
+console.log("l, l ,address", shippingAddressFromStorage)
+console.log("l, l ,Location", shippingLocationFromStorage)
 const initialState = {
   bag: {
     bagItems: bagItemFromStorage,
     shippingAddress: shippingAddressFromStorage,
+    shippingLocation: shippingLocationFromStorage,
   },
   userLogin: { userInfo: userInfoFromStorage,
                userInfoGmail : userInfoFromGmailStorage
