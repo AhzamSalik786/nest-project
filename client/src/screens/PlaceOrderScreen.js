@@ -11,7 +11,9 @@ const PlaceOrderScreen = ({ history, props }) => {
   console.log('his', props, history)
   const dispatch = useDispatch()
   const bag = useSelector((state) => state.bag)
+  const userLogin = useSelector((state) => state.userLogin)
   console.log('bag', bag)
+  console.log('userLogin', userLogin.userInfo.userData._id)
   // console.log("img", `/client/public/${bag.bagItem.images.item.image}`)
 
   //CAlculate prices
@@ -41,7 +43,7 @@ const PlaceOrderScreen = ({ history, props }) => {
 
   useEffect(() => {
     if (success) {
-      history.push(`/orders/${order.createOrder._id}`)
+      history.push(`/order/${order.id}`)
     }
     // eslint-disable-next-line
   }, [history, success])
@@ -49,9 +51,10 @@ const PlaceOrderScreen = ({ history, props }) => {
     console.log('placeHolder Index')
     dispatch(
       createOrder({
+        user: userLogin.userInfo.userData._id,
         orderItems: bag.bagItems,
+        shippingLocation: bag.shippingLocation,
         shippingAddress: bag.shippingAddress,
-        shippingLocaion: bag.shippingLocaion,
         paymentMethod: bag.paymentMethod,
         itemsPrice: bag.itemsPrice,
         shippingPrice: bag.shippingPrice,
@@ -107,7 +110,6 @@ const PlaceOrderScreen = ({ history, props }) => {
               ) : (
                 <ListGroup variarnt='flush'>
                   {bag.bagItems.map((item, index) => (
-
                     // client\public\images\albasit.jpg
                     <ListGroup.Item key={index}>
                       <Row>

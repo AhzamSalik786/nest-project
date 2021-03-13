@@ -11,7 +11,7 @@ import {
 } from '../constants/bagConstant'
 
 export const bagReducer = (
-  state = { bagItems: [], shippingAddress: {} },
+  state = { bagItems: [], shippingAddress: {}, shippingLocation: {} },
   action
 ) => {
   // console.log("bagItem", bagItems)

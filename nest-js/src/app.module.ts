@@ -14,13 +14,14 @@ import { GmailUserModule } from './gmail-user/gmail-user.module';
 // import { GmailUserService } from './gmail-user/gmail-user.service';
 import { BooksModule } from './books/books.module';
 // import { BooksModule } from './books/books.module';
-
+import { OrderModule } from './order/order.module'
 @Module({
   imports: [
     ProductsModule,
     UserModule,
     GmailUserModule,
     BooksModule,
+    OrderModule,
     MongooseModule.forRoot(
       'mongodb+srv://nest:nest2@cluster0.yu7ce.mongodb.net/nestjs-demo?retryWrites=true&w=majority',
       // 'mongodb+srv://nest:nest@cluster0.yu7ce.mongodb.net/nestjs-demo?retryWrites=true&w=majority',

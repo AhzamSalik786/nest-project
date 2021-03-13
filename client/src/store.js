@@ -50,6 +50,9 @@ const shippingAddressFromStorage = localStorage.getItem('shippingAddress')
   const shippingLocationFromStorage = localStorage.getItem('shippingLocation')
   ? JSON.parse(localStorage.getItem('shippingLocation'))
   : {}
+  const paymentMethodFromStroage= localStorage.getItem('paymentMethod')
+  ? JSON.parse(localStorage.getItem('paymentMethod'))
+  : {}
 console.log("l, l ,address", shippingAddressFromStorage)
 console.log("l, l ,Location", shippingLocationFromStorage)
 const initialState = {
@@ -57,6 +60,7 @@ const initialState = {
     bagItems: bagItemFromStorage,
     shippingAddress: shippingAddressFromStorage,
     shippingLocation: shippingLocationFromStorage,
+    paymentMethod: paymentMethodFromStroage,
   },
   userLogin: { userInfo: userInfoFromStorage,
                userInfoGmail : userInfoFromGmailStorage

@@ -6,6 +6,7 @@ import { useDispatch, useSelector } from 'react-redux'
 import Message from '../components/Message'
 import Loader from '../components/Loader'
 import { getOrderDetails } from '../actions/orderActions'
+import { orderDetailsReducer } from '../reducers/orderReducers'
 
 const OrderScreen = ({ match }) => {
   const orderId = match.params.id
@@ -15,7 +16,7 @@ const OrderScreen = ({ match }) => {
 
   const orderDetails = useSelector((state) => state.orderDetails)
   const { order, loading, error } = orderDetails
-
+console.log("orderDetail", orderDetails)
   const orderPay = useSelector((state) => state.orderPay)
   const { loading: loadingPay, success: successPay } = orderPay
 

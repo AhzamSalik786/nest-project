@@ -23,10 +23,10 @@ const App = () => {
         <Container>
           {/* <Route path='/payment' component={PaymentScreen} /> */}
           {/*
-          <Route path='/orders/:id' component={OrderScreen} />
           
           <Route path='/profile' component={ProfileScreen} /> 
         */}
+        <Route path='/orders/:id' component={OrderScreen} />
         <Route path='/user/placeorder' component={PlaceOrderScreen} />
         <Route path='/user/payment' component={PaymentScreen} />
           <Route path='/books/:id' component={ProductScreen} />

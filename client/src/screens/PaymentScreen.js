@@ -15,8 +15,7 @@ const PaymentScreen = ({ history }) => {
   }
 
   const [paymentMethod, setPaymentMethod] = useState(
-    'strip',
-    'PayPal',
+    'stripe',
     'Cash On Delivery',
     
   )
@@ -40,8 +39,8 @@ const PaymentScreen = ({ history }) => {
           <Col>
           <Form.Check
               type='radio'
-              label='Strip'
-              id='Strip'
+              label='Stripe'
+              id='Stripe'
               name='paymentMethod'
               value='Strip'
               checked

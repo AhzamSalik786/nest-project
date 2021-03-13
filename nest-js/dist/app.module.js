@@ -15,6 +15,7 @@ const products_modules_1 = require("./products/products.modules");
 const user_module_1 = require("./user/user.module");
 const gmail_user_module_1 = require("./gmail-user/gmail-user.module");
 const books_module_1 = require("./books/books.module");
+const order_module_1 = require("./order/order.module");
 let AppModule = class AppModule {
 };
 AppModule = __decorate([
@@ -24,6 +25,7 @@ AppModule = __decorate([
             user_module_1.UserModule,
             gmail_user_module_1.GmailUserModule,
             books_module_1.BooksModule,
+            order_module_1.OrderModule,
             mongoose_1.MongooseModule.forRoot('mongodb+srv://nest:nest2@cluster0.yu7ce.mongodb.net/nestjs-demo?retryWrites=true&w=majority'),
         ],
         controllers: [app_controller_1.AppController],
