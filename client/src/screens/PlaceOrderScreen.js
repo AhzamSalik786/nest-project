@@ -113,10 +113,8 @@ const PlaceOrderScreen = ({ history, props }) => {
                     // client\public\images\albasit.jpg
                     <ListGroup.Item key={index}>
                       <Row>
-                        <Col md={12}>
-                          {/* F:\project\nestjs\nestjs-intro\client\public\images\albasit.jpg */}
+                        <Col md={2}>
                           <Image
-                            // src={`../../public${item.image}`}
                             src={`${item.image}`}
                             // client\public\images\albasit.jpg
                             alt={item.name}

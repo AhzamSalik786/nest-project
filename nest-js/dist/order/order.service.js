@@ -43,6 +43,34 @@ let OrderService = class OrderService {
             console.error('this is error ->', error);
         }
     }
+    async getUserOrder(orderId) {
+        const order = await this.findOrder(orderId);
+        return {
+            id: order.id,
+            user: order.user,
+            name: order.name,
+            orderItem: order.orderItem,
+            shippingAddress: order.shippingAddress,
+            shippingLocation: order.shippingLocation,
+            paymentMethod: order.paymentMethod,
+            itemsPrice: order.itemsPrice,
+            shippingPrice: order.shippingPrice,
+            taxPrice: order.taxPrice,
+            totalPrice: order.totalPrice,
+        };
+    }
+    async findOrder(id) {
+        let order;
+        try {
+            order = await this.orderModel.findById(id);
+        }
+        catch (error) {
+            if (!order) {
+                throw new common_1.NotFoundException('Could Not Find Product.');
+            }
+        }
+        return order;
+    }
 };
 OrderService = __decorate([
     common_1.Injectable(),

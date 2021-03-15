@@ -40,4 +40,36 @@ export class OrderService {
       console.error('this is error ->', error);
     }
   }
+
+  async getUserOrder(orderId: string) {
+    const order = await this.findOrder(orderId);
+    return{
+      id: order.id,
+      user: order.user,
+      name: order.name,
+      orderItem: order.orderItem,
+      shippingAddress: order.shippingAddress,
+      shippingLocation: order.shippingLocation,
+      paymentMethod: order.paymentMethod,
+      itemsPrice: order.itemsPrice,
+      shippingPrice: order.shippingPrice,
+      taxPrice: order.taxPrice,
+      totalPrice: order.totalPrice,
+    }
+  }  
+
+
+  private async findOrder(id: string): Promise<any> {
+    let order;
+    try {
+    order= await this.orderModel.findById(id);
+    } catch (error) {
+      if (!order) {
+        throw new NotFoundException('Could Not Find Product.');
+      }
+    }
+    // const productIndex = this.products.findIndex((prod) => prod.id == id);
+    // const product = this.products[productIndex];
+    return order;
+  }
 }

@@ -23,6 +23,9 @@ let OrderController = class OrderController {
         const generateOrderId = await this.orderService.insertOrder(orduser, ordorderItem, ordshippingAddress, ordshippingLocation, ordpaymentMethod, orditemsPrice, ordshippingPrice, ordtaxPrice, ordtotalPrice);
         return { id: generateOrderId };
     }
+    getOrder(prodId) {
+        return this.orderService.getUserOrder(prodId);
+    }
 };
 __decorate([
     common_1.Post(),
@@ -39,6 +42,13 @@ __decorate([
     __metadata("design:paramtypes", [Object, Object, Object, Object, String, String, String, String, String]),
     __metadata("design:returntype", Promise)
 ], OrderController.prototype, "addOrder", null);
+__decorate([
+    common_1.Get(':id'),
+    __param(0, common_1.Param('id')),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [String]),
+    __metadata("design:returntype", void 0)
+], OrderController.prototype, "getOrder", null);
 OrderController = __decorate([
     common_1.Controller('order'),
     __metadata("design:paramtypes", [order_service_1.OrderService])

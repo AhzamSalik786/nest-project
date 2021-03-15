@@ -1637,13 +1637,13 @@
         "affectsGlobalScope": false
       },
       "../src/order/order.service.ts": {
-        "version": "608e414eeaa30c2d495cb6d092aae29745bd66edba9a37d50141a7c0a67446cf",
-        "signature": "1ffe2a656645cf5707c8e47a96534175f4d298b7292c7d851574056e9d9dbf92",
+        "version": "059390b66a8ff8183ad9c2e8765545083e0627c870e8585ea8e3f0c710d74094",
+        "signature": "1e785510b16a640e36f14dd818dc0cbc3f7516bfd8f3b5b921857976a911de7a",
         "affectsGlobalScope": false
       },
       "../src/order/order.controller.ts": {
-        "version": "f14d3367451fa690d5fe1f0fc84461be93f5173c3003fff6e818750106bcfc8c",
-        "signature": "067f89e122c9248c67fe1ce2ddf4d164b9459eac0a342ac8320569c1e3d4201d",
+        "version": "89413b0d10e55dc9895bdf13b6f396c2edc287f79ce991eb1e930158378936b4",
+        "signature": "125df40a679ac182807fa98facfa6124384eb48e19e9bc8813eee339605767dc",
         "affectsGlobalScope": false
       },
       "../src/order/order.module.ts": {
